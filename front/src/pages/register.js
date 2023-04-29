@@ -1,9 +1,7 @@
 import React from 'react';
-import { Layout as AntLayout, Button, Input, Form,  Row, Col, Typography } from 'antd';
+import { Layout as AntLayout, Button, Input, Form, Row, Col, Typography } from 'antd';
 
-
-function Register({ }) {
-
+export const Register = () => {
   return (
       <AntLayout.Content style={{ paddingBottom: 36 }}>
         <Row style={{ height: '100%' }} align="middle">
