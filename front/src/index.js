@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Register from './pages/register';
 
 const App = () => {
   return (
     <div>
-      <h1>Hello, world!</h1>
+      <Register></Register>
     </div>
   );
 };
