@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 
+import Layout from '@/components/Layout';
 
 function Register({ }) {
   const [isLogging, setIsLogging] = useState(false);
@@ -23,6 +24,7 @@ function Register({ }) {
     setIsLogging(true);
     }
   return (
+    <Layout>
       <AntLayout.Content style={{ paddingBottom: 36 }}>
         <Row style={{ height: '100%' }} align="middle">
           <Col span={24} md={12}>
@@ -63,6 +65,7 @@ function Register({ }) {
           </Col>
         </Row>
       </AntLayout.Content>
+    </Layout>
   )
 }
 
