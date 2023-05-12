@@ -1,0 +1,39 @@
+html,
+html.light {
+    body {
+        transition: background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+
+    .layout-header {
+        margin-bottom: 24px;
+        box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.65);
+        transition: background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+          box-shadow 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+
+}
+
+html {
+    body {
+        background-color: #1f1f1f;
+    }
+
+    .side-image.login-image {
+        background-image: url(/images/doodles/CoffeeDoddle.svg);
+    }
+}
+
+html.light {
+    body {
+        background-color: #ffffff;
+    }
+
+    .layout-header {
+        background-color: #ffffff;
+        box-shadow: 0 2px 8px #f0f1f2;
+    }
+
+    .side-image.login-image {
+        background-image: url(/images/doodles/DancingDoodle.svg);
+    }
+}
