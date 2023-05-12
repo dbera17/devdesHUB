@@ -31,11 +31,11 @@ function Register({ }) {
             <Form layout="vertical" onFinish={onFormFinish} style={{ maxWidth: 380, margin: '0 auto' }} requiredMark={false}>
               <Form.Item><Typography.Title level={2}>ავტორიზაცია</Typography.Title></Form.Item>
               <Space size={16} style={{width: '100%', justifyContent: 'center'}} align="center">
-                <Button href="https://api.dvlp.ge/connect/github"
+                <Button href="https://mystrapi.ge/connect/github"
                   className="dark-button social-button" shape="circle" size="large" icon={<GithubOutlined />} />
-                <Button href="https://api.dvlp.ge/connect/google"
+                <Button href="https://mystrapi.ge/connect/google"
                   className="dark-button social-button" shape="circle" size="large" icon={<GoogleOutlined />}/>
-                <Button href="https://api.dvlp.ge/connect/facebook"
+                <Button href="https://mystrapi.ge/connect/facebook"
                   className="dark-button social-button" shape="circle" size="large" icon={<FacebookOutlined />}/>
               </Space>
               <Divider plain>ან</Divider>
