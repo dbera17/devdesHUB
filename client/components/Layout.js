@@ -1,11 +1,12 @@
 import Head from "next/head";
+import Header from "./Header";
 
 function Layout({ children }) {
   return (
     <>
       <Head>
         <title>devdesHub</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/next.svg" />
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
@@ -16,8 +17,8 @@ function Layout({ children }) {
         <meta property="og:url" content="https://devdesHub.ge/" />
         <meta property="og:title" content="devdesHub." />
         <meta name="keywords" content="developers, georgia, recruting" />
-        <link href="/fonts.css" rel="stylesheet" />
       </Head>
+      <Header />
       <div className="layout-content-wrapper">
         {children}
       </div>

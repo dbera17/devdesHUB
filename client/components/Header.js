@@ -20,13 +20,11 @@ function Header() {
     <Layout.Header className="layout-header">
       <Space style={{ justifyContent: "space-between" }}>
         <Link href="/" passHref>
-          <a>
             LOGO
-          </a>
         </Link>
         <div>
           <Space className="desktop-menu">
-            <Link href="/login" >
+            <Link href="/login" passHref>
               <Button type="text">ავტორიზაცია</Button>
             </Link>
             <Button type="text" size="large" shape="circle" className="center-icon-button" onClick={switchTheme} icon={theme === 'dark' ? <MdBrightness7/> : <MdBrightness4/>}/>

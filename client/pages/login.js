@@ -1,34 +1,19 @@
 import { FacebookOutlined, GithubOutlined, GoogleOutlined } from '@ant-design/icons';
 import { Layout as AntLayout, Button, Input, Form, message, Row, Col, Typography, Divider, Space } from 'antd';
 import Link from 'next/link';
-import Router, { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import Layout from '@/components/Layout';
 
 function Register({ }) {
   const [isLogging, setIsLogging] = useState(false);
-  const router = useRouter();
 
-  useEffect(() => {
-    if (localStorage.getItem('jwt')) {
-      Router.replace('/me');
-    }
-  }, []);
-  useEffect(() => {
-    if (router.query?.confirm) {
-      message.success('ელ-ფოსტა წარმატებით დადასტურდა');
-    }
-  }, [router.query?.confirm])
-  function onFormFinish(values) {
-    setIsLogging(true);
-    }
   return (
     <Layout>
       <AntLayout.Content style={{ paddingBottom: 36 }}>
         <Row style={{ height: '100%' }} align="middle">
           <Col span={24} md={12}>
-            <Form layout="vertical" onFinish={onFormFinish} style={{ maxWidth: 380, margin: '0 auto' }} requiredMark={false}>
+            <Form layout="vertical" style={{ maxWidth: 380, margin: '0 auto' }} requiredMark={false}>
               <Form.Item><Typography.Title level={2}>ავტორიზაცია</Typography.Title></Form.Item>
               <Space size={16} style={{width: '100%', justifyContent: 'center'}} align="center">
                 <Button href="https://mystrapi.ge/connect/github"
