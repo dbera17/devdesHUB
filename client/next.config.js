@@ -20,6 +20,32 @@ const nextConfig = {
       }
     })
 
+    // // import antd Less files after next/head component
+    // config.module.rules.push({
+    //   test: /\.less$/,
+    //   use: [
+    //     {
+    //       loader: "less-loader",
+    //       options: {
+    //         lessOptions: {
+    //           paths: [path.resolve(__dirname, "node_modules/antd/lib/style")],
+    //         },
+    //       },
+    //     },
+    //     {
+    //       loader: MiniCssExtractPlugin.loader,
+    //       options: {
+    //         filename: "[name].css",
+    //       },
+    //     },
+    //   ],
+    // });
+
+    // // add mini-css-extract-plugin to plugins array
+    // config.plugins = [
+    //   new MiniCssExtractPlugin(),
+    // ];
+
     return config;
   }
 }
