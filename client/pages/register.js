@@ -7,11 +7,7 @@ import Layout from '../components/Layout';
 function Register({ }) {
   const [isRegistering, setIsRegistering] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  useEffect(() => {
-    if (localStorage.getItem('jwt')) {
-      Router.replace('/me');
-    }
-  }, []);
+
   function onFormFinish(values) {
     setIsRegistering(true);
     values.username = values.email; 
