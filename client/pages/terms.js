@@ -6,9 +6,9 @@ const { Title, Paragraph } = Typography;
 function Terms() {
   return (
     <Layout>
-      <AntLayout.Content style={{ padding: '0 50px' }}>
-        <Row style={{ marginTop: 64 }} justify="center">
-          <Col span={24} md={12}>
+      <AntLayout.Content style={{ paddingBottom: 36 }}>
+        <Row style={{ height: '100%' }} align="middle">
+          <Col span={24} md={12} style={{ maxWidth: 580, margin: '0 auto' }} >
             <Title level={1}>Terms and Conditions</Title>
             <Paragraph>
               Welcome to DevDesHub! These terms and conditions outline the rules and regulations for the use of DevDesHub's Website. By accessing this website we assume you accept these terms and conditions in full. Do not continue to use DevDesHub's website if you do not accept all of the terms and conditions stated on this page.
@@ -43,8 +43,8 @@ function Terms() {
             />
             {/* Continue with your terms and conditions... */}
           </Col>
-          <Col span={24} md={12}>
-            {/* You might want to add additional information or images here */}
+          <Col span={0} md={12}>
+            <div className="side-image terms-image"></div>
           </Col>
         </Row>
       </AntLayout.Content>

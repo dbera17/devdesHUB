@@ -1,11 +1,13 @@
 html,
 html.light {
     body {
+        margin: 0;
         transition: background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     }
 
     .layout-header {
         margin-bottom: 24px;
+        background-color: #1f1f1f;
         box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.65);
         transition: background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
           box-shadow 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -29,7 +31,16 @@ html {
     }
 
     .side-image.login-image {
-        background-image: url(/images/doodles/CoffeeDoddle.svg);
+        background-image: url(/images/login/dark.svg);
+    }
+    .side-image.register-image {
+        background-image: url(/images/register/dark.svg);
+    }
+    .side-image.reset-image {
+        background-image: url(/images/reset/dark.svg);
+    }
+    .side-image.terms-image {
+        background-image: url(/images/terms/dark.svg);
     }
 }
 
@@ -44,6 +55,15 @@ html.light {
     }
 
     .side-image.login-image {
-        background-image: url(/images/doodles/DancingDoodle.svg);
+        background-image: url(/images/login/light.svg);
+    }
+    .side-image.register-image {
+        background-image: url(/images/register/light.svg);
+    }
+    .side-image.reset-image {
+        background-image: url(/images/reset/light.svg);
+    }
+    .side-image.terms-image {
+        background-image: url(/images/terms/light.svg);
     }
 }
