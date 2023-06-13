@@ -10,7 +10,7 @@ html.light {
         background-color: #1f1f1f;
         box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.65);
         transition: background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
-          box-shadow 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+            box-shadow 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     }
 
     .side-image {
@@ -23,6 +23,53 @@ html.light {
         padding-top: 80%;
     }
 
+    .ant-layout-content {
+        max-width: 1400px;
+        width: 100%;
+    }
+
+    .ant-divider {
+        border: none !important;
+        margin: 16px 0 !important;
+    }
+
+    .ant-btn-link>span {
+        text-decoration: underline;
+    }
+
+    .ant-pagination {
+        margin-bottom: 8px;
+    }
+
+    .ant-input,
+    .ant-input-password,
+    .ant-select-selector,
+    .ant-select {
+        border-width: 2px !important;
+        border-radius: 6px !important;
+        outline: none !important;
+        box-shadow: none !important;
+        border-right-width: 2px !important;
+        &:hover,
+        &:focus,
+        &.ant-input-focused,
+        &.ant-input-affix-wrapper-focused,
+        &:hover .ant-select-selector,
+        &.ant-select-focused .ant-select-selector {
+            outline: none !important;
+            box-shadow: none !important;
+            border-right-width: 2px !important;
+        }
+    }
+
+    .ant-select-focused:not(.ant-select-disabled).ant-select-single:not(.ant-select-customize-input) .ant-select-selector,
+    .ant-select:not(.ant-select-disabled):hover .ant-select-selector {
+        border-right-width: 2px !important;
+    }
+
+    .ant-btn {
+        border-radius: 6px;
+    }
 }
 
 html {
@@ -30,23 +77,139 @@ html {
         background-color: #1f1f1f;
     }
 
+    .ant-input,
+    .ant-input-password,
+    .ant-select-selector,
+    .ant-select {
+        &:hover,
+        &:focus,
+        &.ant-input-focused,
+        &.ant-input-affix-wrapper-focused,
+        &:hover .ant-select-selector,
+        &.ant-select-focused .ant-select-selector {
+            border-color: #ffffff !important;
+        }
+    }
+
+    .ant-tabs-tab {
+        &:hover,
+        &:active,
+        &.ant-tabs-tab-active .ant-tabs-tab-btn {
+            color: #ffffff;
+        }
+    }
+
+    .ant-tabs-tab-btn:focus,
+    .ant-tabs-tab-remove:focus,
+    .ant-tabs-tab-btn:active,
+    .ant-tabs-tab-remove:active {
+        color: #ffffff;
+    }
+
+    .ant-tabs-ink-bar {
+        background-color: #ffffff;
+    }
+
+    .ant-btn-link {
+        color: #ffffff;
+        &:hover {
+            color: #c5c5c5;
+        }
+    }
+
     .side-image.login-image {
         background-image: url(/images/login/dark.svg);
     }
+
     .side-image.register-image {
         background-image: url(/images/register/dark.svg);
     }
+
     .side-image.reset-image {
         background-image: url(/images/reset/dark.svg);
     }
+
     .side-image.terms-image {
         background-image: url(/images/terms/dark.svg);
+    }
+
+    .dark-button {
+        background: #333333 !important;
+        border-color: #333333 !important;
+        border-width: 2px !important;
+        border-style: solid !important;
+        color: #ffffff !important;
+        &:hover,
+        &:active,
+        &:focus {
+            background: #646464 !important;
+            border-color: #646464 !important;
+            color: #ffffff !important;
+        }
+
+        &.social-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &>.anticon {
+                height: 18px;
+            }
+        }
     }
 }
 
 html.light {
     body {
         background-color: #ffffff;
+    }
+
+    .ant-input,
+    .ant-input-password,
+    .ant-select-selector,
+    .ant-select {
+        &:hover,
+        &:focus,
+        &.ant-input-focused,
+        &.ant-input-affix-wrapper-focused,
+        &:hover .ant-select-selector,
+        &.ant-select-focused .ant-select-selector {
+            border-color: #000000 !important;
+        }
+    }
+
+    .ant-tabs-tab {
+        &:hover,
+        &:active,
+        &.ant-tabs-tab-active .ant-tabs-tab-btn {
+            color: #000000;
+        }
+    }
+
+    .ant-tabs-tab-btn:focus,
+    .ant-tabs-tab-remove:focus,
+    .ant-tabs-tab-btn:active,
+    .ant-tabs-tab-remove:active {
+        color: #000000;
+    }
+
+    .ant-tabs-ink-bar {
+        background-color: #000000;
+    }
+
+    .dark-button {
+        background: #e8e8e8 !important;
+        border-color: #e8e8e8 !important;
+        border-width: 2px !important;
+        border-style: solid !important;
+        color: #000000 !important;
+        &:hover,
+        &:active,
+        &:focus {
+            background: #D9D9D9 !important;
+            border-color: #D9D9D9 !important;
+            color: #000000 !important;
+        }
     }
 
     .layout-header {
@@ -57,13 +220,38 @@ html.light {
     .side-image.login-image {
         background-image: url(/images/login/light.svg);
     }
+
     .side-image.register-image {
         background-image: url(/images/register/light.svg);
     }
+
     .side-image.reset-image {
         background-image: url(/images/reset/light.svg);
     }
+
     .side-image.terms-image {
         background-image: url(/images/terms/light.svg);
+    }
+
+    .ant-btn-link {
+        color: #000000;
+        &:hover {
+            color: #424242;
+        }
+    }
+
+    .dark-button {
+        background: #e8e8e8 !important;
+        border-color: #e8e8e8 !important;
+        border-width: 2px !important;
+        border-style: solid !important;
+        color: #000000 !important;
+        &:hover,
+        &:active,
+        &:focus {
+            background: #D9D9D9 !important;
+            border-color: #D9D9D9 !important;
+            color: #000000 !important;
+        }
     }
 }
