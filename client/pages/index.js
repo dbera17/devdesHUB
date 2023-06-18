@@ -1,15 +1,50 @@
 import React from 'react';
+import ReactMixitup from 'react-mixitup';
+import DsgnPagination from '../components/pagination';
 import Layout from '../components/Layout';
-import { Button, Layout as AntLayout, Col, Checkbox, Drawer } from 'antd';
+import { Button, Layout as AntLayout, Row, Col, Checkbox, Drawer } from 'antd';
 import ChipsContainer from '../components/ChipsContainer';
 import SingleUser from '../components/SingleUser';
+import { useMediaQuery } from '@react-hook/media-query'
+
+const ITEMS_PER_PAGE = 9;
+
+const Wrapper = React.forwardRef(({ children, style }, ref) => {
+  return (
+    <div
+      style={{
+        transition: 'height 0.5s ease',
+        width: '100%',
+        ...style,
+      }}
+      ref={ref}
+    >
+      {children}
+    </div>
+  );
+});
+
+const scrollToRef = (ref) => {
+  ref.current.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start',
+  });
+};
 
 function Home({ people, directions, experienceList, employmentStatusList, skillsList }) {
+  const isMobile = useMediaQuery('(max-width: 576px)');
+  const [items, setItems] = React.useState(
+    people.map((person) => person.id)
+  );
   const [selectedDirections, setSelectedDirections] = React.useState({});
   const [selectedExperiences, setSelectedExperiences] = React.useState({});
   const [selectedEmploymentStatus, setSelectedEmploymentStatus] = React.useState({});
   const [selectedSkills, setSelectedSkills] = React.useState({});
+  const [activePage, setActivePage] = React.useState(1);
   const [filterDrawerVisible, setFilterDrawerVisible] = React.useState(false);
+
+  const mixitRef = React.useRef(null);
+  const scrollToTop = () => scrollToRef(mixitRef);
 
   function onDirectionCheckChanged(directionId, checked) {
     setSelectedDirections({
@@ -72,7 +107,7 @@ function Home({ people, directions, experienceList, employmentStatusList, skills
       key={person.id}
       style={style}
       rowRef={ref}
-      imageUrl={`https://mystrapi.ge${person.Profilepicture?.formats?.small?.url ??
+      imageUrl={`http://localhost:1337${person.Profilepicture?.formats?.small?.url ??
         person.Profilepicture?.url
         }`}
       Fullname={person.Fullname}
@@ -84,6 +119,21 @@ function Home({ people, directions, experienceList, employmentStatusList, skills
       website2={person.website2}
     />
   }
+  const renderCells = React.useCallback((items) => {
+    return (
+      <div>
+        {items.map(({ key, ref, style }) => renderCell({ key, style, ref }))}
+      </div>
+    );
+  });
+
+  function paginateArray(array) {
+    return array.slice(
+      (activePage - 1) * ITEMS_PER_PAGE,
+      activePage * ITEMS_PER_PAGE
+    );
+  }
+
   return (
     <Layout>
       <AntLayout.Content>
@@ -145,14 +195,96 @@ function Home({ people, directions, experienceList, employmentStatusList, skills
             ))}
           </ChipsContainer>
         </Drawer>
+        <Row gutter={16}>
+          <Col span={24} xl={6} md={7} style={{ marginBottom: 24 }}>
+            {isMobile ?
+              <Button size="large" className="dark-button" block onClick={() => setFilterDrawerVisible(true)}>ფილტრი</Button>
+              :
+              <>
+                <ChipsContainer title="მიმართულება">
+                  {directions.map((direction) => (
+                    <Col key={direction.id}>
+                      <Checkbox
+                        className="checkbox-chips"
+                        onChange={(e) =>
+                          onDirectionCheckChanged(direction.id, e.target.checked)
+                        }
+                      >{direction.name}</Checkbox>
+                    </Col>
+                  ))}
+                </ChipsContainer>
+                <ChipsContainer title="შესაძლებლობები">
+                  {skillsList.map((skill) => (
+                    <Col key={skill.key}>
+                      <Checkbox
+                        className="checkbox-chips"
+                        onChange={(e) =>
+                          onSkillCheckChanged(skill.key, e.target.checked)
+                        }
+                      >{skill.text}</Checkbox>
+                    </Col>
+                  ))}
+                </ChipsContainer>
+                <ChipsContainer title="გამოცდილება">
+                  {experienceList.map((experience) => (
+                    <Col key={experience.id}>
+                      <Checkbox
+                        className="checkbox-chips"
+                        onChange={(e) =>
+                          onExperienceCheckChanged(experience.id, e.target.checked)
+                        }
+                      >{experience.name}</Checkbox>
+                    </Col>
+                  ))}
+                </ChipsContainer>
+                <ChipsContainer title="დასაქმების სტატუსი">
+                  {employmentStatusList.map((status) => (
+                    <Col key={status.id}>
+                      <Checkbox
+                        className="checkbox-chips"
+                        onChange={(e) =>
+                          onEmploymentStatusCheckChanged(status.id, e.target.checked)
+                        }
+                      >{status.name}</Checkbox>
+                    </Col>
+                  ))}
+                </ChipsContainer>
+              </>}
+          </Col>
+          <Col span={24} xl={18} md={17}>
+            <Row>
+              <Col style={{ width: '100%' }}>
+                <ReactMixitup
+                  renderCells={renderCells}
+                  items={paginateArray(items)}
+                  Wrapper={Wrapper}
+                  ref={mixitRef}
+                />
+              </Col >
+            </Row>
+            <Row>
+              <Col span={24} style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <DsgnPagination
+                  totalItems={items.length}
+                  activePage={activePage}
+                  onPageChange={(page) => {
+                    setActivePage(page);
+                    scrollToTop();
+                  }}
+                />
+              </Col>
+            </Row>
+          </Col>
+        </Row>
       </AntLayout.Content>
     </Layout>
   );
 }
 
 export async function getStaticProps(ctx) {
-  const res = await fetch('https://mystrapi.ge/limit=-1&published=true');
-  let people = await res.json();
+  // const res = await fetch('http://localhost:1337/api/developers');
+  // let people = await res.json();
+  let people = [];
 
   const directionsMap = {};
   const experiencesMap = {};
@@ -239,8 +371,28 @@ export async function getStaticProps(ctx) {
       count: skillsMap[skill]
     }
   }).sort((a, b) => b.count - a.count);
+  function shuffle(array) {
+    var copy = [],
+      n = array.length,
+      i;
+
+    // While there remain elements to shuffle…
+    while (n) {
+      // Pick a remaining element…
+      i = Math.floor(Math.random() * array.length);
+
+      // If not already shuffled, move it to the new array.
+      if (i in array) {
+        copy.push(array[i]);
+        delete array[i];
+        n--;
+      }
+    }
+
+    return copy;
+  }
   return {
-    props: { people: people, directions, experienceList, employmentStatusList, skillsList },
+    props: { people: shuffle(people), directions, experienceList, employmentStatusList, skillsList },
     revalidate: 60 * 15 // every 15 minutes
   };
 }
