@@ -15,13 +15,13 @@ function Register({ }) {
           <Col span={24} md={12}>
             <Form layout="vertical" style={{ maxWidth: 380, margin: '0 auto' }} requiredMark={false}>
               <Form.Item><Typography.Title level={2}>ავტორიზაცია</Typography.Title></Form.Item>
-              <Space size={16} style={{width: '100%', justifyContent: 'center'}} align="center">
+              <Space size={16} style={{ width: '100%', justifyContent: 'center' }} align="center">
                 <Button href="http://localhost:1337/connect/github"
                   className="dark-button social-button" shape="circle" size="large" icon={<GithubOutlined />} />
                 <Button href="hhttp://localhost:1337/connect/google"
-                  className="dark-button social-button" shape="circle" size="large" icon={<GoogleOutlined />}/>
+                  className="dark-button social-button" shape="circle" size="large" icon={<GoogleOutlined />} />
                 <Button href="http://localhost:1337/connect/facebook"
-                  className="dark-button social-button" shape="circle" size="large" icon={<FacebookOutlined />}/>
+                  className="dark-button social-button" shape="circle" size="large" icon={<FacebookOutlined />} />
               </Space>
               <Divider plain>ან</Divider>
               <Form.Item label="ელ-ფოსტა" name="identifier" rules={[{ required: true, message: 'გთხოვთ შეიყვანოთ ელ-ფოსტა' }]}>
