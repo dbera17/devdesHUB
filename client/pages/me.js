@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Layout as AntLayout, Spin, Button, Tabs, Affix, Space, Row, Col, Form, Input, Divider, Popconfirm, Typography, Upload, Select } from 'antd';
 import Layout from '../components/Layout';
 import Router from 'next/router';
+import SingleUser from '../components/SingleUser'
 import { PlusOutlined } from '@ant-design/icons';
 
 function Me() {
@@ -192,6 +193,23 @@ function ApplicationForm() {
                 extra="შეგიძლია სურვილისამებრ დაამატო შესაძლებლობები"
                 rules={[{ required: true, message: 'გთხოვთ აირჩიოთ შესაძლებლობები' }]}>
                 <Select size="large" mode="tags">
+                  <Select.Option value="javascript">javascript</Select.Option>
+                  <Select.Option value="html">html</Select.Option>
+                  <Select.Option value="css">css</Select.Option>
+                  <Select.Option value="git">git</Select.Option>
+                  <Select.Option value="python">python</Select.Option>
+                  <Select.Option value="java">java</Select.Option>
+                  <Select.Option value="php">php</Select.Option>
+                  <Select.Option value="nodejs">nodejs</Select.Option>
+                  <Select.Option value="swift">swift</Select.Option>
+                  <Select.Option value="kotlin">kotlin</Select.Option>
+                  <Select.Option value="sql">sql</Select.Option>
+                  <Select.Option value="mongodb">mongodb</Select.Option>
+                  <Select.Option value="mysql">mysql</Select.Option>
+                  <Select.Option value="react">react</Select.Option>
+                  <Select.Option value="vue">vue</Select.Option>
+                  <Select.Option value="angular">angular</Select.Option>
+                  <Select.Option value="C#.NET">C#.NET</Select.Option>
                 </Select>
               </Form.Item>
               <Form.Item
@@ -208,6 +226,24 @@ function ApplicationForm() {
               </Form.Item>
               <Button size="large" type="primary" htmlType="submit" className="dark-button" block>დადასტურება</Button>
             </Form>
+          </Col>
+          <Col span={0} md={12}>
+            <Row justify="center">
+              <Col style={{ minWidth: 348 }}>
+                <Affix offsetTop={50}>
+                  <SingleUser
+                    style={{ maxWidth: 348 }}
+                    imageUrl={file ? URL.createObjectURL(file) : (antFormData.avatar ? antFormData.avatar : '/imgs/profile.png')}
+                    Fullname={antFormData.Fullname}
+                    Location={antFormData.Location}
+                    directionName={'ტესტი ტექსტი'}
+                    Summary={antFormData.Summary}
+                    skills={antFormData.skills}
+                    website1={antFormData.website1}
+                    website2={antFormData.website2} />
+                </Affix>
+              </Col>
+            </Row>
           </Col>
         </Row>
       )}
