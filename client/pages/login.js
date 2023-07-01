@@ -1,15 +1,37 @@
 import { FacebookFilled, FacebookOutlined, GithubFilled, GithubOutlined, GoogleOutlined, GoogleSquareFilled } from '@ant-design/icons';
 import { Layout as AntLayout, Button, Input, Form, message, Row, Col, Typography, Divider, Space } from 'antd';
+import Axios from 'axios';
 import Link from 'next/link';
-import { useState } from 'react';
+import Router, { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 
 
 function Register({ }) {
   const [isLogging, setIsLogging] = useState(false);
+  const router = useRouter();
 
-  function onFormFinish() {
+  useEffect(() => {
+    if (localStorage.getItem('jwt')) {
+      Router.replace('/me');
+    }
+  }, []);
+  useEffect(() => {
+    if (router.query?.confirm) {
+      message.success('ელ-ფოსტა წარმატებით დადასტურდა');
+    }
+  }, [router.query?.confirm])
+  function onFormFinish(values) {
     setIsLogging(true);
+    Axios.post('http://localhost:1337/auth/local', values)
+      .then(({ data }) => {
+        setIsLogging(false);
+        localStorage.setItem('jwt', data.jwt);
+        Router.push('/me');
+      }).catch(({ response }) => {
+        setIsLogging(false);
+        message.error(response?.data?.message[0]?.messages[0]?.message ?? 'შეცდომა ავტორიზაციისას');
+      })
   }
   return (
     <Layout>
