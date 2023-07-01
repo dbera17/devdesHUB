@@ -1,19 +1,22 @@
-import { FacebookOutlined, GithubOutlined, GoogleOutlined } from '@ant-design/icons';
+import { FacebookFilled, FacebookOutlined, GithubFilled, GithubOutlined, GoogleOutlined, GoogleSquareFilled } from '@ant-design/icons';
 import { Layout as AntLayout, Button, Input, Form, message, Row, Col, Typography, Divider, Space } from 'antd';
 import Link from 'next/link';
 import { useState } from 'react';
+import Layout from '../components/Layout';
 
-import Layout from '@/components/Layout';
 
 function Register({ }) {
   const [isLogging, setIsLogging] = useState(false);
 
+  function onFormFinish() {
+    setIsLogging(true);
+  }
   return (
     <Layout>
       <AntLayout.Content style={{ paddingBottom: 36 }}>
         <Row style={{ height: '100%' }} align="middle">
           <Col span={24} md={12}>
-            <Form layout="vertical" style={{ maxWidth: 380, margin: '0 auto' }} requiredMark={false}>
+            <Form layout="vertical" onFinish={onFormFinish} style={{ maxWidth: 380, margin: '0 auto' }} requiredMark={false}>
               <Form.Item><Typography.Title level={2}>ავტორიზაცია</Typography.Title></Form.Item>
               <Space size={16} style={{ width: '100%', justifyContent: 'center' }} align="center">
                 <Button href="http://localhost:1337/connect/github"
