@@ -1,4 +1,5 @@
-import { Layout as AntLayout, Button, Input, Form, Row, Col, Typography, Space } from 'antd';
+import { Layout as AntLayout, Button, Input, Form, message, Row, Col, Typography, Space } from 'antd';
+import Axios from 'axios';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
@@ -7,13 +8,23 @@ import Layout from '../components/Layout';
 function Register({ }) {
   const [isRegistering, setIsRegistering] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-
+  useEffect(() => {
+    if (localStorage.getItem('jwt')) {
+      Router.replace('/me');
+    }
+  }, []);
   function onFormFinish(values) {
     setIsRegistering(true);
-    values.username = values.email; 
-    console.log(valies);
+    values.username = values.email;
+    Axios.post('http://localhost:1337/auth/local/register', values)
+      .then(({ data }) => {
+        setIsRegistering(false);
+        setIsSuccess(true);
+      }).catch(({ response }) => {
+        setIsRegistering(false);
+        message.error(response?.data?.message[0]?.messages[0]?.message ?? 'შეცდომა რეგისტრაციისას');
+      })
   }
-
   return (
     <Layout>
       <AntLayout.Content style={{ paddingBottom: 36 }}>

@@ -1,7 +1,8 @@
-import { Layout as AntLayout, Button, Input, Form, Row, Col, Typography } from 'antd';
+import { Layout as AntLayout, Button, Input, Form, message, Row, Col, Typography } from 'antd';
+import Axios from 'axios';
 import Link from 'next/link';
 import { useState } from 'react';
-import Layout from '@/components/Layout';
+import Layout from '../components/Layout';
 
 
 function ForgetPassword({ }) {
@@ -9,6 +10,14 @@ function ForgetPassword({ }) {
   const [isSuccess, setIsSuccess] = useState(false);
   function onFormFinish(values) {
     setIsSending(true);
+    Axios.post('http://localhost:1337/auth/forgot-password', values)
+      .then(({ data }) => {
+        setIsSending(false);
+        setIsSuccess(true);
+      }).catch(({ response }) => {
+        setIsSending(false);
+        message.error(response.data.message[0].messages[0].message);
+      })
   }
   return (
     <Layout>
