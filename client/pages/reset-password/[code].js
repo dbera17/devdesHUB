@@ -1,7 +1,8 @@
 import { Layout as AntLayout, Button, Input, Form, message, Row, Col, Typography } from 'antd';
+import Axios from 'axios';
 import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Layout from '../../components/Layout';
 
 
@@ -9,9 +10,19 @@ function Register({ }) {
   const [isSending, setIsSending] = useState(false);
   const router = useRouter();
   const { code } = router.query;
-  console.log(code);
   function onFormFinish(values) {
-    console.log('aaaa');
+    setIsSending(true);
+    values.code = code;
+    Axios.post('http://localhost:1337/auth/reset-password', values)
+      .then(({ data }) => {
+        setIsSending(false);
+        message.success('პაროლი წარმატებით შეიცვალა');
+        localStorage.setItem('jwt', data.jwt);
+        Router.push('/me');
+      }).catch(({ response }) => {
+        setIsSending(false);
+        message.error(response.data.message[0].messages[0].message);
+      })
   }
   return (
     <Layout>

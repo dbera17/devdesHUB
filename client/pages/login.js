@@ -43,7 +43,7 @@ function Register({ }) {
               <Space size={16} style={{ width: '100%', justifyContent: 'center' }} align="center">
                 <Button href="http://localhost:1337/connect/github"
                   className="dark-button social-button" shape="circle" size="large" icon={<GithubOutlined />} />
-                <Button href="hhttp://localhost:1337/connect/google"
+                <Button href="http://localhost:1337/connect/google"
                   className="dark-button social-button" shape="circle" size="large" icon={<GoogleOutlined />} />
                 <Button href="http://localhost:1337/connect/facebook"
                   className="dark-button social-button" shape="circle" size="large" icon={<FacebookOutlined />} />
