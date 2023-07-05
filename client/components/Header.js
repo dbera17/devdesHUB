@@ -54,15 +54,27 @@ function Header() {
             <Link href="/terms" passHref>
               <Button type="text">ჩვენ შესახებ</Button>
             </Link>
-            <Button type="text" size="large" shape="circle" className="center-icon-button" onClick={switchTheme} icon={theme === 'dark' ? <MdBrightness7/> : <MdBrightness4/>}/>
+            <Link href="/materials" passHref>
+              <Button type="text">სასწავლო მასალა</Button>
+            </Link>
+            <Button type="text" size="large" shape="circle" className="center-icon-button" onClick={switchTheme} icon={theme === 'dark' ? <MdBrightness7 /> : <MdBrightness4 />} />
           </Space>
           <Dropdown className="mobile-menu" trigger={['click']} overlay={
             <Menu>
-              {!isProfileFetching && <Menu.Item><Link href="/me" passHref>
-                <a>{userData ? userData.email : 'ავტორიზაცია'}</a>
-              </Link></Menu.Item>}
+              {!isProfileFetching &&
+                <Menu.Item>
+                  <Link href="/me" passHref>
+                    <a>{userData ? userData.email : 'ავტორიზაცია'}</a>
+                  </Link>
+                </Menu.Item>
+              }
               <Menu.Item>
-              <Button type="text" size="large" shape="circle" className="center-icon-button" onClick={switchTheme} icon={theme === 'dark' ? <MdBrightness7/> : <MdBrightness4/>}/>
+                <Link href="/materials" passHref>
+                  <a>სასწავლო მასალა</a>
+                </Link>
+              </Menu.Item>
+              <Menu.Item>
+                <Button type="text" size="large" shape="circle" className="center-icon-button" onClick={switchTheme} icon={theme === 'dark' ? <MdBrightness7 /> : <MdBrightness4 />} />
               </Menu.Item>
             </Menu>
           }>
