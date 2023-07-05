@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Header from "./Header";
+import NextNProgress from '../components/NextNProgress';
 
 function Layout({ children }) {
   return (
@@ -19,6 +20,7 @@ function Layout({ children }) {
         <meta name="keywords" content="developers, georgia, recruting" />
       </Head>
       <Header />
+      <NextNProgress />
       <div className="layout-content-wrapper">
         {children}
       </div>
